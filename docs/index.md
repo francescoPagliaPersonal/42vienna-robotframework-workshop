@@ -48,15 +48,15 @@ This workshop focuses on **web testing** using Browser Library against [SauceDem
 
 ## Documentation
 
-- [Getting Started](docs/getting-started.md) — setup guide (Codespaces, local, Windows)
-- [RF Syntax Cheatsheet](docs/rf-syntax-cheatsheet.md) — quick reference
-- [Browser Library Guide](docs/browser-library-guide.md) — Browser Library keywords
-- [Exercises](docs/exercises.md) — progressive hands-on exercises
-- [Troubleshooting](docs/troubleshooting.md) — common issues and fixes
-- [AI-Assisted Testing](docs/ai-assisted-testing.md) — using AI for test generation
-- [Student Workflow](docs/student-workflow.md) — fork, write tests, submit PR
-- [Windows Setup](docs/windows-setup.md) — detailed Windows instructions
-- **[Full Documentation Site](https://hackxit.github.io/42vienna-robotframework-workshop/)** — hosted on GitHub Pages
+- [Getting Started](getting-started.md) — setup guide (Codespaces, local, Windows)
+- [RF Syntax Cheatsheet](rf-syntax-cheatsheet.md) — quick reference
+- [Browser Library Guide](browser-library-guide.md) — Browser Library keywords
+- [Exercises](exercises.md) — progressive hands-on exercises
+- [Troubleshooting](troubleshooting.md) — common issues and fixes
+- [AI-Assisted Testing](ai-assisted-testing.md) — using AI for test generation
+- [Student Workflow](student-workflow.md) — fork, write tests, submit PR
+- [Windows Setup](windows-setup.md) — detailed Windows instructions
+- [Keyword Documentation](keywords/index.md) — auto-generated keyword reference
 
 ## Common Commands
 
@@ -82,4 +82,4 @@ uv run robot tests/student_exercises/yourname_*.robot
 
 ## License
 
-[MIT](LICENSE) — Nikolaus Rieder, 2026
+[MIT](https://github.com/HackXIt/42vienna-robotframework-workshop/blob/main/LICENSE) — Nikolaus Rieder, 2026

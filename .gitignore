@@ -21,3 +21,10 @@ Thumbs.db
 # Browser Library runtime
 browser/
 playwright-log.txt
+
+# MkDocs
+site/
+
+# Robocop
+robocop.json
+.robocop_cache/

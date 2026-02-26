@@ -13,6 +13,7 @@ Suite Teardown    Close SauceDemo
 
 *** Keywords ***
 Login And Add Item To Cart
+    [Documentation]    Log in with standard user and add a product to the cart.
     Open SauceDemo
     Login With Credentials    ${VALID_USER}    ${VALID_PASSWORD}
     Login Should Succeed

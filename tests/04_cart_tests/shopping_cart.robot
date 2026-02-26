@@ -15,6 +15,7 @@ Test Setup        Go To    ${BASE_URL}/inventory.html
 
 *** Keywords ***
 Login And Open Products
+    [Documentation]    Log in with standard user and navigate to products page.
     Open SauceDemo
     Login With Credentials    ${VALID_USER}    ${VALID_PASSWORD}
     Login Should Succeed

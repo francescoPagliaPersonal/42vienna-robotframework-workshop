@@ -28,6 +28,13 @@ jobs:
       - name: Install dependencies
         run: uv sync --locked
 
+      - name: Run Robocop lint
+        id: robocop
+        continue-on-error: true
+        run: |
+          uv run robocop check tests/ resources/ 2>&1 | tee robocop-output.txt
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+
       - name: Initialize Browser Library
         run: uv run rfbrowser init chromium
 
@@ -47,30 +54,56 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            let output = '';
+
+            // Read test output
+            let testOutput = '';
             try {
-              output = fs.readFileSync('test-output.txt', 'utf8');
+              testOutput = fs.readFileSync('test-output.txt', 'utf8');
             } catch (e) {
-              output = 'Could not read test output.';
+              testOutput = 'Could not read test output.';
+            }
+            const testLines = testOutput.trim().split('\n');
+            const testSummary = testLines.slice(-10).join('\n');
+
+            // Read robocop output
+            let robocopOutput = '';
+            try {
+              robocopOutput = fs.readFileSync('robocop-output.txt', 'utf8').trim();
+            } catch (e) {
+              robocopOutput = 'Could not read Robocop output.';
             }
 
-            // Extract summary line (last few lines of robot output)
-            const lines = output.trim().split('\n');
-            const summaryLines = lines.slice(-10).join('\n');
+            const testPassed = '${{ steps.tests.outcome }}' === 'success';
+            const robocopPassed = '${{ steps.robocop.outcome }}' === 'success';
 
-            const passed = '${{ steps.tests.outcome }}' === 'success';
-            const icon = passed ? '✅' : '❌';
-            const status = passed ? 'All tests passed!' : 'Some tests failed.';
+            const testIcon = testPassed ? '✅' : '❌';
+            const testStatus = testPassed ? 'All tests passed!' : 'Some tests failed.';
 
-            const body = `## ${icon} Robot Framework Test Results
+            const robocopIcon = robocopPassed ? '✅' : '⚠️';
+            const robocopStatus = robocopPassed ? 'No issues found.' : 'Issues found — see details below.';
 
-            **Status:** ${status}
+            const body = `## ${testIcon} Robot Framework Test Results
+
+            **Status:** ${testStatus}
 
             <details>
             <summary>Test Output (last 10 lines)</summary>
 
             \`\`\`
-            ${summaryLines}
+            ${testSummary}
+            \`\`\`
+
+            </details>
+
+            ## ${robocopIcon} Robocop Code Quality
+
+            **Status:** ${robocopStatus}
+
+            <details>
+            <summary>Robocop Output</summary>
+
+            \`\`\`
+            ${robocopOutput}
             \`\`\`
 
             </details>
@@ -91,3 +124,10 @@ jobs:
         with:
           name: pr-robot-results
           path: results/
+
+      - name: Upload Robocop report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-robocop-report
+          path: robocop-output.txt

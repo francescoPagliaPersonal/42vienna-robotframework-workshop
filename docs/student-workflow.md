@@ -61,7 +61,7 @@ python scripts/check_environment.py
 
 4. **Check the results** — open `results/log.html` for detailed execution logs
 
-See [Exercises](04-exercises.md) for progressive exercise instructions.
+See [Exercises](exercises.md) for progressive exercise instructions.
 
 ## Step 4: Commit Your Work
 

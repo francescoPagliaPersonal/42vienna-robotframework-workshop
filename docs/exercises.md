@@ -103,7 +103,7 @@ This is the **page object pattern** in action — abstracting complex flows into
    - Locked user → should show locked message
    - Empty username → should show required error
 
-Study the `[Template]` section in `docs/02-rf-syntax-cheatsheet.md`.
+Study the `[Template]` section in the [RF Syntax Cheatsheet](rf-syntax-cheatsheet.md).
 
 ## Exercise 8: AI-Assisted Testing (Demo)
 
