@@ -1239,9 +1239,9 @@ Phase 1 (Repo + pyproject.toml)
 - [x] Create `.github/workflows/pr-feedback.yml`
 - [x] Create `.github/PULL_REQUEST_TEMPLATE.md`
 - [x] Test CI runs on push to main — verified, 25/25 pass on GitHub Actions
-- [ ] Test CI runs on PR
+- [x] Test CI runs on PR — PR #1 verified, 27/27 pass (25 base + 2 student tests)
 - [x] Verify test results artifact is uploaded — confirmed in CI run
-- [ ] Verify PR comment with results summary (pr-feedback workflow, now uses pull_request_target)
+- [x] Verify PR comment with results summary — pull_request_target posts comment with pass/fail + output
 - [ ] (Nice-to-have) Configure GitHub Pages for test reports
 
 ### Phase 6: AI Integration (Day 3-4)
@@ -1278,7 +1278,7 @@ Phase 1 (Repo + pyproject.toml)
 - [x] Write fork instructions in docs — `docs/07-student-workflow.md` (no screenshots yet)
 - [ ] Test Plan A: fork → Codespace on fork → write test → push → PR to upstream → CI approval → results
 - [ ] Test Plan B: add collaborator → Codespace on main repo → branch → push → PR → CI → results
-- [ ] Verify PR template appears when creating PR (from both fork and branch)
+- [x] Verify PR template appears when creating PR — confirmed via test PR #1
 - [ ] Verify GitHub Actions workflow approval flow for first-time fork contributors
 - [x] Prepare `gh api` one-liner for quickly adding collaborators — in `docs/workshop-agenda.md`
 - [x] Configure GitHub Actions settings — set default workflow permissions to write, approval for first-time contributors
@@ -1331,7 +1331,7 @@ Phase 1 (Repo + pyproject.toml)
 | Issue | Status | Details |
 |-------|--------|---------|
 | SauceDemo availability | LOW RISK | Public site, generally reliable. If down, fallback to automationexercise.com or the-internet.herokuapp.com. |
-| SauceDemo selector changes | OPEN | They occasionally update their markup. Verify selectors are current before workshop. |
+| SauceDemo selector changes | RESOLVED | Verified: all selectors work. 25 tests pass locally and in CI (March 2026). |
 | Headless mode in Codespaces | OPEN | Verify Browser Library runs headless correctly without a display server. Should work (Playwright supports headless natively). |
 
 ### PHASE 5 — CI/CD
@@ -1372,4 +1372,4 @@ Phase 1 (Repo + pyproject.toml)
 ---
 
 *Plan created: March 9, 2026*
-*Last updated: March 9, 2026 — Phases 1-7 implementation complete, Phase 9-10 docs created, CI validated (25/25 pass)*
+*Last updated: March 9, 2026 — Phases 1-10 implementation complete, CI + PR feedback verified (27/27 pass on PR #1)*
