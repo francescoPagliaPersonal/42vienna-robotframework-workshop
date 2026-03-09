@@ -21,7 +21,7 @@ jobs:
         run: uv sync --locked
 
       - name: Run Robocop lint
-        run: uv run robocop check --output robocop-output.txt tests/ resources/
+        run: uv run robocop check tests/ resources/ 2>&1 | tee robocop-output.txt
 
       - name: Upload Robocop report
         if: always()
