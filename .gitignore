@@ -28,3 +28,5 @@ site/
 # Robocop
 robocop.json
 .robocop_cache/
+*.sarif.json
+robocop.txt

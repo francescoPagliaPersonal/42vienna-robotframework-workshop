@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  security-events: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -21,14 +24,21 @@ jobs:
         run: uv sync --locked
 
       - name: Run Robocop lint
-        run: uv run robocop check tests/ resources/ 2>&1 | tee robocop-output.txt
+        run: uv run robocop check --reports sarif --exit-zero tests/ resources/
 
-      - name: Upload Robocop report
+      - name: Upload SARIF to GitHub
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: .sarif.json
+          category: robocop
+
+      - name: Upload Robocop SARIF artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: robocop-report
-          path: robocop-output.txt
+          name: robocop-sarif
+          path: .sarif.json
 
   robot-tests:
     runs-on: ubuntu-latest
